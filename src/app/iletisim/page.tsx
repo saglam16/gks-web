@@ -5,11 +5,13 @@ import { useState } from 'react';
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+  const [errorDetail, setErrorDetail] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrorDetail('');
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -21,7 +23,9 @@ export default function ContactPage() {
     };
 
     try {
-      const response = await fetch('/api/contact', {
+      console.log('Form verisi gönderiliyor:', data);
+      
+      const response = await fetch('/.netlify/functions/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,13 +33,19 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Gönderim sırasında bir hata oluştu');
+      const result = await response.json();
+      console.log('API yanıtı:', result);
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Gönderim sırasında bir hata oluştu');
+      }
 
       setSubmitStatus('success');
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error('Form gönderimi sırasında hata:', error);
       setSubmitStatus('error');
+      setErrorDetail(error instanceof Error ? error.message : 'Bilinmeyen bir hata oluştu');
     } finally {
       setIsSubmitting(false);
     }
@@ -59,7 +69,9 @@ export default function ContactPage() {
             
             {submitStatus === 'error' && (
               <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
-                Mesajınız gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+                <p>Mesajınız gönderilirken bir hata oluştu.</p>
+                {errorDetail && <p className="mt-2 text-sm">{errorDetail}</p>}
+                <p className="mt-2">Lütfen daha sonra tekrar deneyin veya doğrudan bizimle iletişime geçin.</p>
               </div>
             )}
             

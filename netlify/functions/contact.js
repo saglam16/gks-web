@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 
 exports.handler = async function(event, context) {
+  console.log('Function başlatıldı');
+  
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -9,18 +11,35 @@ exports.handler = async function(event, context) {
   }
 
   try {
+    console.log('Request body:', event.body);
     const { name, email, phone, service, message } = JSON.parse(event.body);
+
+    // Env değişkenlerini kontrol et
+    console.log('SMTP Ayarları:', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER ? 'Mevcut' : 'Eksik',
+      pass: process.env.SMTP_PASS ? 'Mevcut' : 'Eksik',
+      contactEmail: process.env.CONTACT_EMAIL ? 'Mevcut' : 'Eksik'
+    });
 
     // E-posta gönderimi için transporter oluştur
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
+      port: parseInt(process.env.SMTP_PORT),
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      debug: true,
+      logger: true
     });
+
+    // Transporter'ı test et
+    console.log('SMTP bağlantısı test ediliyor...');
+    await transporter.verify();
+    console.log('SMTP bağlantısı başarılı');
 
     // E-posta içeriğini oluştur
     const mailOptions = {
@@ -44,18 +63,29 @@ exports.handler = async function(event, context) {
       `,
     };
 
-    // E-postayı gönder
-    await transporter.sendMail(mailOptions);
+    console.log('E-posta gönderiliyor...');
+    const info = await transporter.sendMail(mailOptions);
+    console.log('E-posta gönderildi:', info);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Mesajınız başarıyla gönderildi' }),
+      body: JSON.stringify({ message: 'Mesajınız başarıyla gönderildi', info }),
     };
   } catch (error) {
-    console.error('E-posta gönderimi sırasında hata:', error);
+    console.error('Detaylı hata:', {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      command: error.command
+    });
+    
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Mesaj gönderilirken bir hata oluştu' }),
+      body: JSON.stringify({ 
+        message: 'Mesaj gönderilirken bir hata oluştu',
+        error: error.message,
+        code: error.code
+      }),
     };
   }
 }; 
