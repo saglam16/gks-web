@@ -25,12 +25,17 @@ exports.handler = async function(event, context) {
 
     // E-posta gönderimi için transporter oluştur
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT),
+      service: 'gmail',  // Gmail için özel service tanımı
+      host: 'smtp.gmail.com',
+      port: 465,
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+        minVersion: 'TLSv1.2'
       },
       debug: true,
       logger: true
