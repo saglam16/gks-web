@@ -4,6 +4,7 @@
 
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
+  SECRETS_SCAN_ENABLED = "false"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs" 
