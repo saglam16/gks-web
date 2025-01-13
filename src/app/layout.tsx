@@ -44,24 +44,13 @@ export default function RootLayout({
         <main>{children}</main>
         <footer className="bg-black text-white mt-12">
           <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-bold mb-4">İletişim</h3>
                 <p>Adres: Balkan Mah. Lalezar Sok. No:10/9</p>
                 <p>Nilüfer/Bursa</p>
                 <p>Tel: (0539) 221 76 81</p>
                 <p>E-posta: saglam16@gmail.com</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold mb-4">Hizmetlerimiz</h3>
-                <ul className="space-y-2">
-                  <li><Link href="/hizmetler/kadastro" className="hover:text-gray-400">Kadastro Ölçümleri</Link></li>
-                  <li><Link href="/hizmetler/imar" className="hover:text-gray-400">İmar Uygulamaları</Link></li>
-                  <li><Link href="/hizmetler/cbs" className="hover:text-gray-400">CBS Hizmetleri</Link></li>
-                  <li><Link href="/hizmetler/halihazir" className="hover:text-gray-400">Halihazır Harita</Link></li>
-                  <li><Link href="/hizmetler/plankote" className="hover:text-gray-400">Plankote ve Aplikasyon</Link></li>
-                  <li><Link href="/hizmetler/3d-modelleme" className="hover:text-gray-400">3D Modelleme</Link></li>
-                </ul>
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-4">Çalışma Saatleri</h3>
