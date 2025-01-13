@@ -42,13 +42,12 @@ export default function AboutPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h2 className="text-2xl font-semibold mb-4">Vizyonumuz</h2>
               <p className="text-gray-700">
-                Türkiye'nin önde gelen harita mühendislik firmaları arasında yer alarak,
+                Türkiye&apos;nin önde gelen harita mühendislik firmaları arasında yer alarak,
                 teknolojik gelişmeleri yakından takip eden ve müşteri memnuniyetini ön
                 planda tutan bir firma olmak.
               </p>
             </div>
           </div>
-
 
           {/* Sertifikalar ve Başarılar */}
           <div className="bg-gray-50 p-8 rounded-lg">
