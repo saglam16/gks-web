@@ -114,12 +114,12 @@ export default function ContactPage() {
                   required
                 >
                   <option value="">Seçiniz</option>
-                  <option value="kadastro">Kadastro Ölçümleri</option>
+                  <option value="kadastro">Parsel Sınırının Yerinde Gösterimi</option>
                   <option value="imar">İmar Uygulamaları</option>
-                  <option value="cbs">CBS Hizmetleri</option>
-                  <option value="halihazir">Halihazır Harita</option>
-                  <option value="plankote">Plankote ve Aplikasyon</option>
-                  <option value="3d-modelleme">3D Modelleme</option>
+                  <option value="cbs">Hus(Yapı Aplikasyon)</option>
+                  <option value="halihazir">Halihazır Harita ve Kubaj Hesabı</option>
+                  <option value="plankote">Vaziyet Planı, Röperli Kroki ve Bağımsız Bölüm Planı</option>
+                  <option value="3d-modelleme">3D yapı Aplikasyon - Validasyon Kodu</option>
                 </select>
               </div>
               
