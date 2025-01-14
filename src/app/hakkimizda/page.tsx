@@ -21,6 +21,9 @@ export default function AboutPage() {
               2020 yılından bu yana harita mühendisliği alanında faaliyet gösteren GKS Harita Mühendislik,
               profesyonel kadrosu ve modern teknolojik altyapısı ile müşterilerimize en kaliteli
               hizmeti sunmayı hedeflemektedir.
+              < br/>
+              GKS Harita Mühendislik kurucu Gökhan Sağlam 2013 yılınmda Selçuk Üniversitesinden mezun oldu. 2020 yılına kadar Burken A.Ş. de planlama
+              sorumlusu olarak görev yapmıştır. 2020 yılından bu yana GKS Harita da mühendislik hizmetleri vermektedir.
             </p>
             <p className="text-lg text-gray-700 mb-6">
               Kadastro ölçümlerinden imar uygulamalarına, CBS hizmetlerinden plankote
