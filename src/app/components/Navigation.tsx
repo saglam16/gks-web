@@ -34,6 +34,9 @@ export default function Navigation() {
             <Link href="/hizmetler" className="px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all">
               Hizmetlerimiz
             </Link>
+            <Link href="/harita" className="px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all">
+              Harita
+            </Link>
             <Link href="/hakkimizda" className="px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all">
               Hakkımızda
             </Link>
@@ -62,6 +65,13 @@ export default function Navigation() {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Hizmetlerimiz
+          </Link>
+          <Link 
+            href="/harita" 
+            className="block px-4 py-3 rounded-lg border border-white hover:bg-white hover:text-black transition-all text-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Harita
           </Link>
           <Link 
             href="/hakkimizda" 
