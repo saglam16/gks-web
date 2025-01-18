@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -19,11 +19,6 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const MapComponent: React.FC = () => {
-  useEffect(() => {
-    // Leaflet CSS'ini dinamik olarak yükleme
-    import('leaflet/dist/leaflet.css');
-  }, []);
-
   return (
     <MapContainer
       center={[39.925533, 32.866287]} // Ankara koordinatları
