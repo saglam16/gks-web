@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 // Leaflet'i client tarafında dinamik olarak yüklüyoruz
-const MapComponent = dynamic(() => import('../../components/MapComponent'), {
+const MapComponent = dynamic(() => import('@/components/MapComponent'), {
   ssr: false, // Sunucu tarafında render edilmemesi için
   loading: () => <div className="w-full h-screen flex items-center justify-center">Harita yükleniyor...</div>
 });
